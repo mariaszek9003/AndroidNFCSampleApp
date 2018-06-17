@@ -5,7 +5,7 @@ using Android.Content;
 
 namespace AndroidNFCSampleApp
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name"/*, Theme = "@style/AppTheme"*/ /*, MainLauncher = true*/)]
     public class MainActivity : Activity
     {
         #region Fields
@@ -48,6 +48,10 @@ namespace AndroidNFCSampleApp
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
+            var alert = new AlertDialog.Builder(this).Create();
+            alert.SetMessage("NFC tag discovered");
+            alert.SetTitle("NFC");
+            alert.Show();
         }
         #endregion
     }
