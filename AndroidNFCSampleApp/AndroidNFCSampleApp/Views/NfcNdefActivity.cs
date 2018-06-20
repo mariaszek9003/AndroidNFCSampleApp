@@ -7,13 +7,9 @@ using Android.Nfc.Tech;
 namespace AndroidNFCSampleApp
 {
     [IntentFilter(new[] { NfcAdapter.ActionNdefDiscovered }, Categories = new[] { "android.intent.category.DEFAULT" }, DataMimeType = "*/*")]
-    [Activity(Label = "NfcNdefActivity")]//[Activity(Label = "@string/app_name")]  //MfcNdefActivity
+    [Activity(Label = "NfcNdefActivity")]
     public class NfcNdefActivity : Activity
     {
-        #region Constants
-        public const string ViewApeMimeType = "application/vnd.xamarin.nfcxample";
-        #endregion
-
         #region Fields
         private NfcAdapter nfcAdapter;
         #endregion
