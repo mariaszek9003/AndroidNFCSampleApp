@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <Button
+        android:id="@+id/buttonNfcNdefStart"
+        android:text="NDEF (with background)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/buttonNfcTechStart"
+        android:text="Tech Mifare (with background)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/buttonNfcTagStart"
+        android:text="Tag discovered (without background)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

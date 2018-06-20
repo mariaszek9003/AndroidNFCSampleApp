@@ -1,59 +1,46 @@
-﻿using Android.OS;
+﻿using System;
+using Android.OS;
 using Android.App;
-using Android.Nfc;
-using Android.Content;
+using Android.Widget;
 
-namespace AndroidNFCSampleApp
+namespace AndroidNFCSampleApp.Views
 {
-    [Activity(Label = "@string/app_name"/*, Theme = "@style/AppTheme"*/ /*, MainLauncher = true*/)]
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
         #region Fields
-        private NfcAdapter nfcAdapter;
+        private Button buttonNfcNdefStart;
+        private Button buttonNfcTechStart;
+        private Button buttonNfcTagStart;
         #endregion
-
-        #region LifeCycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.layout_main_activity);
 
-            nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
+            buttonNfcNdefStart = FindViewById<Button>(Resource.Id.buttonNfcNdefStart);
+            buttonNfcTechStart = FindViewById<Button>(Resource.Id.buttonNfcTechStart);
+            buttonNfcTagStart = FindViewById<Button>(Resource.Id.buttonNfcTagStart);
+
+            buttonNfcNdefStart.Click += ButtonNfcNdefStart_Click;
+            buttonNfcTechStart.Click += ButtonNfcTechStart_Click;
+            buttonNfcTagStart.Click += ButtonNfcTagStart_Click;
         }
 
-        protected override void OnResume()
+        private void ButtonNfcNdefStart_Click(object sender, EventArgs e)
         {
-            base.OnResume();
-
-            if (nfcAdapter == null)
-            {
-                var alert = new AlertDialog.Builder(this).Create();
-                alert.SetMessage("NFC is not supported on this device.");
-                alert.SetTitle("NFC Unavailable");
-                alert.Show();
-            }
-            else
-            {
-                var tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
-                var filters = new[] { tagDetected };
-                var intent = new Intent(this, this.GetType()).AddFlags(ActivityFlags.SingleTop);
-                var pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
-
-                nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
-            }
+            StartActivity(typeof(NfcNdefActivity));
         }
-        #endregion
 
-        #region Actions
-        protected override void OnNewIntent(Intent intent)
+        private void ButtonNfcTechStart_Click(object sender, EventArgs e)
         {
-            base.OnNewIntent(intent);
-            var alert = new AlertDialog.Builder(this).Create();
-            alert.SetMessage("NFC tag discovered");
-            alert.SetTitle("NFC");
-            alert.Show();
+            StartActivity(typeof(NfcTechActivity));
         }
-        #endregion
+
+        private void ButtonNfcTagStart_Click(object sender, EventArgs e)
+        {
+            StartActivity(typeof(NfcTagActivity));
+        }
+
     }
 }
-
