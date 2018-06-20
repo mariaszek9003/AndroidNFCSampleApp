@@ -6,7 +6,6 @@ using Android.Nfc.Tech;
 
 namespace AndroidNFCSampleApp.Views
 {
-    //[Activity(Label = "NFC2Activity"), IntentFilter(new[] { NfcAdapter.ActionTechDiscovered }, Categories = new[] { "android.intent.category.DEFAULT" })]
     [IntentFilter(new[] { NfcAdapter.ActionTechDiscovered }, Categories = new[] { "android.intent.category.DEFAULT" })]
     [MetaData(NfcAdapter.ActionTechDiscovered, Resource = "@xml/nfc_tech_list")]
     [Activity(Label = "NfcTechActivity", LaunchMode = Android.Content.PM.LaunchMode.SingleInstance)]
